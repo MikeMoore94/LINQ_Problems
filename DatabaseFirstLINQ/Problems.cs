@@ -33,8 +33,11 @@ namespace DatabaseFirstLINQ
             //ProblemSixteen();
             //ProblemSeventeen();
             //ProblemEighteen();
-            ProblemNineteen();
-            ProblemTwenty();
+            //ProblemNineteen();
+            //ProblemTwenty();
+            BonusOne();
+            //BonusTwo();
+            //BonusThree();
         }
 
         // <><><><><><><><> R Actions (Read) <><><><><><><><><>
@@ -293,29 +296,44 @@ namespace DatabaseFirstLINQ
             // Prompt the user to enter in an email and password through the console.
             // Take the email and password and check if the there is a person that matches that combination.
             // Print "Signed In!" to the console if they exists and the values match otherwise print "Invalid Email or Password.".
+            Console.WriteLine("Email Address: ");
+            var userEmail = Console.ReadLine();
+            Console.WriteLine("Password: ");
+            var userPass = Console.ReadLine();
+            var checkUserEmailExist = _context.Users.Where(eu => eu.Email == userEmail).SingleOrDefault();
+            var checkUserPassExist = _context.Users.Where(eu => eu.Password == userPass).SingleOrDefault();
+            if (checkUserEmailExist == null || checkUserPassExist == null)
+            {
+                Console.WriteLine("Invalid Email or Password");
+            }
+            else if (userEmail == checkUserEmailExist.Email && userPass == checkUserPassExist.Password)
+            {
+                Console.WriteLine("Signed in!");
+            }
         }
-
-        private void BonusTwo()
-        {
-            // Write a query that finds the total of every users shopping cart products using LINQ.
-            // Display the total of each users shopping cart as well as the total of the toals to the console.
-        }
-
-        // BIG ONE
-        private void BonusThree()
-        {
-            // 1. Create functionality for a user to sign in via the console
-            // 2. If the user succesfully signs in
-            // a. Give them a menu where they perform the following actions within the console
-            // View the products in their shopping cart
-            // View all products in the Products table
-            // Add a product to the shopping cart (incrementing quantity if that product is already in their shopping cart)
-            // Remove a product from their shopping cart
-            // 3. If the user does not succesfully sing in
-            // a. Display "Invalid Email or Password"
-            // b. Re-prompt the user for credentials
-
-        }
-
     }
+
+        //private void BonusTwo()
+        //{
+        //    // Write a query that finds the total of every users shopping cart products using LINQ.
+        //    // Display the total of each users shopping cart as well as the total of the toals to the console.
+        //}
+
+        //// BIG ONE
+    //    private void BonusThree()
+    //    {
+    //        // 1. Create functionality for a user to sign in via the console
+    //        // 2. If the user succesfully signs in
+    //        // a. Give them a menu where they perform the following actions within the console
+    //        // View the products in their shopping cart
+    //        // View all products in the Products table
+    //        // Add a product to the shopping cart (incrementing quantity if that product is already in their shopping cart)
+    //        // Remove a product from their shopping cart
+    //        // 3. If the user does not succesfully sing in
+    //        // a. Display "Invalid Email or Password"
+    //        // b. Re-prompt the user for credentials
+
+    //    }
+
+    //}
 }
